@@ -6,6 +6,7 @@
     modules/nvim
     modules/fonts
     modules/latex
+    modules/programming
   ];
 
   home.username = "francois";
