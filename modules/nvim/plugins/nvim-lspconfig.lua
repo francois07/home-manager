@@ -62,67 +62,6 @@
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
-      init_options = {
-        typescript = {
-          tsdk = '/home/francois/.nvm/versions/node/v20.9.0/lib/node_modules/typescript/lib',
-        }
-      },
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure emmet language server
-    lspconfig["emmet_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
-
-    -- configure python server
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure html server
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure css server
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure svelte server
-    lspconfig["svelte"].setup({
-      capabilities = capabilities,
-      filetypes = { "svelte", "html" },
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = { "*.js", "*.ts" },
-          callback = function(ctx)
-            if client.name == "svelte" then
-              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-            end
-          end,
-        })
-      end,
-    })
-
     -- configure python server
     lspconfig["pyright"].setup({
       capabilities = capabilities,
@@ -151,16 +90,6 @@
     })
 
     lspconfig["gopls"].setup({
-      capbilities = capabilities,
-      on_attach = on_attach
-    })
-
-    lspconfig["rust_analyzer"].setup({
-      capbilities = capabilities,
-      on_attach = on_attach
-    })
-
-    lspconfig["sqlls"].setup({
       capbilities = capabilities,
       on_attach = on_attach
     })
