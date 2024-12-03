@@ -5,5 +5,7 @@
     pkgs.gopls
     pkgs.crystal
     pkgs.crystalline
+    pkgs.lua-language-server
+    pkgs.nil
   ];
 }
